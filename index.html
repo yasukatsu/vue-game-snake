@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <title>蛇ゲーム</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+
+        <style>
+            /* グリッドレイアウト */
+            #map{
+                --grid-size: 10; /* 10 x 10 マス（CSS変数） */
+
+                display: grid;
+                grid-template-columns: repeat(var(--grid-size), 30px); /* 10列　幅30px */
+                grid-template-rows: repeat(var(--grid-size), 30px); /* 10列　高さ30px */
+            }
+
+            /* セルの色 */
+            .cell{
+                border: 1px solid white;
+                background: whitesmoke;
+            }
+
+            /* ヘビの頭の色 */
+            .cell.head{
+                background: dimgray;
+            }
+
+            /* ヘビの身体の色 */
+            .cell.body{
+                background: darkgray;
+            }
+
+            /* フルーツの色 */
+            .cell.fruit{
+                background: orangered;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="map">
+            <!-- セルを100個生成して、必要に応じてhead, body, furitクラスをつける -->
+            <!-- （注意：Vueは v-for="i in 数値"とした時、iが1から始まる） -->
+            <div v-for="i in grid_size * grid_size" 
+            :class="{
+                cell: true,
+                head: snake_head_index === i -1,
+                body: snake.body_indexes.includes(i -1),
+                fruit: fruit_index === i - 1,
+            }"
+            ><!-- {{ i - 1 }} --></div>
+        </div>
+    </body>
+</html>
