@@ -129,8 +129,40 @@
                     is_frameout(){
                         const head = this.snake.head_pos
                         return head.x < 0 || this.grid_size <= head.x || head.y < 0 || this.grid_size <= head.y
-                    }
+                    },
 
+                    // ゲームオーバー？
+                    is_gameover(){
+                        return this.is_suicided || this.is_frameout
+                    },
+                },
+
+                method: {
+
+                    // 時間を進める
+                    time_goes(){
+                        if(this.is_gameover) 
+                        return this.forward_snake()
+
+                        // speedミリ秒後に自分自身を呼び出す
+                        setTimeout(this.time_goes.bind(this), this.snake.speed)
+                    },
+
+                    // ヘビを進める
+                    forward_snake() {
+
+                        // 体の最後尾を頭に持ってくる
+                        this.snake.body_indexes.shift()
+                        this.snake.body_indexes.push(this.snake_head_index)
+
+                        // 頭を１マス移動
+                        switch(this.snake.direction){
+                            case '←' : this.snake.head_pos.x--; break
+                            case '↑' : this.snake.head_pos.y--; break
+                            case '→' : this.snake.head_pos.x++; break
+                            case '↓' : this.snake.head_pos.y++; break
+                        }
+                    }
                 }
             })
         </script>
