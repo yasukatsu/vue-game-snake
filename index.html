@@ -69,7 +69,7 @@
 
                     // ヘビに関するデータ
                     snake: {
-                        // ヘビの座標（初期値）
+                        // 頭の座標（初期値）
                         head_pos: {
                             x: 1,
                             y: 3,
@@ -104,11 +104,9 @@
                         this.grow_up_snake()
                         this.randomize_fruit_index()
                     },
-
                 },
 
                 computed: {
-
                     // ヘビの頭の座標をインデックスに変換
                     snake_head_index() {
                         if(this.is_frameout) return null
@@ -141,8 +139,8 @@
 
                     // 時間を進める
                     time_goes(){
-                        if(this.is_gameover) 
-                        return this.forward_snake()
+                        if(this.is_gameover) return
+                        this.forward_snake()
 
                         // speedミリ秒後に自分自身を呼び出す
                         setTimeout(this.time_goes.bind(this), this.snake.speed)
@@ -162,8 +160,39 @@
                             case '→' : this.snake.head_pos.x++; break
                             case '↓' : this.snake.head_pos.y++; break
                         }
-                    }
-                }
+                    },
+
+                    // ヘビの体を伸ばす
+                    grow_up_snake(){
+                        this.snake.body_indexes.unshift(this.snake.body_indexes[0])
+                    },
+
+                    // フルーツの位置をランダムに移動
+                    randomize_fruit_index(){
+                        this,fruit_index = Math.floor(Math.random() * this.grid_size) // 0~99の乱数
+                    },
+
+                    // キー入力を受け取ってヘビの進行方向を変える（逆方向は不可）
+                    on_keydown(keyCode){
+                        switch(keyCode){
+                            case 37:  // 「←」が押された時
+                            if (this.snake.direction !== '→') { this.snake.direction = '←'; }
+                            break
+
+                            case 38:  // 「↑」が押された時
+                            if (this.snake.direction !== '↓') { this.snake.direction = '↑' }
+                            break
+
+                            case 39:  // 「→」が押された時
+                            if (this.snake.direction !== '←') { this.snake.direction = '→' }
+                            break
+
+                            case 40:  // 「↓」が押された時
+                            if (this.snake.direction !== '↑') { this.snake.direction = '↓' }
+                            break
+                        }
+                    },
+                },
             })
         </script>
     </body>
