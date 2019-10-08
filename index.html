@@ -62,7 +62,6 @@
         <script>
             new  Vue({
                 el: '#app',
-
                 data: {
                     grid_size: 10, // 10 x 10 マス
                     fruit_index: 0, // フルーツの位置インデックス
@@ -135,7 +134,7 @@
                     },
                 },
 
-                method: {
+                methods: {
 
                     // 時間を進める
                     time_goes(){
@@ -169,7 +168,7 @@
 
                     // フルーツの位置をランダムに移動
                     randomize_fruit_index(){
-                        this,fruit_index = Math.floor(Math.random() * this.grid_size) // 0~99の乱数
+                        this.fruit_index = Math.floor(Math.random() * this.grid_size * this.grid_size) // 0~99の乱数
                     },
 
                     // キー入力を受け取ってヘビの進行方向を変える（逆方向は不可）
