@@ -40,7 +40,10 @@ new  Vue({
             if(!newValue) return  // 食べていなかったら何もしない
             this.grow_up_snake()
             this.randomize_fruit_index()
+            this.level_up()
+            console.log(this.snake.speed)
         },
+
     },
 
     computed: {
@@ -129,5 +132,10 @@ new  Vue({
                 break
             }
         },
+
+        // 進む時間が短くなる
+        level_up(){
+            this.snake.speed -= 10
+        }
     },
 })
