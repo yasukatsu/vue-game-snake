@@ -44,12 +44,6 @@ new  Vue({
             console.log(this.snake.speed)
         },
 
-        // SCOREが5上がると進む速度が早くなる
-        // is_body_indexes(newValue){
-        //     if(newValue > 5) return // 5以上だと早くなる
-        //     this.level_up()
-        //     console.log(this.snake.speed)
-        // },
     },
 
     computed: {
@@ -62,11 +56,6 @@ new  Vue({
         // フルーツ食べてる？
         is_eating_fruit() {
             return this.snake_head_index === this.fruit_index
-        },
-
-        // 体の長さは？
-        is_body_indexes() {
-            return this.snake.body_indexes.length
         },
 
         // 自己衝突してる？
