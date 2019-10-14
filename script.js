@@ -1,6 +1,8 @@
 new  Vue({
     el: '#app',
     data: {
+        title: "スネークゲーム",
+
         grid_size: 10, // 10 x 10 マス
         fruit_index: 0, // フルーツの位置インデックス
 
