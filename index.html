@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <title>スネークゲーム</title>
+
+        <link rel="stylesheet" href="./style.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <div id="app" class="mx-auto">
+                    
+            <h1 class="title">{{title}}</h1>
+
+            <h2>SCORE: {{ snake.body_indexes.length - 1 }}</h2>
+                    
+            <div id="map">
+                <!-- セルを100個生成して、必要に応じてhead, body, furitクラスをつける -->
+                <!-- （注意：Vueは v-for="i in 数値"とした時、iが1から始まる） -->
+                <div v-for="i in grid_size * grid_size" 
+                :class="{
+                    cell: true,
+                    head: snake_head_index === i -1,
+                    body: snake.body_indexes.includes(i -1),
+                    fruit: fruit_index === i - 1,
+                }"
+                ><!-- {{ i - 1 }} --></div>
+                </div>
+            
+                <h2 class="text-danger" v-if='is_gameover'>
+                    GAME OVER<br>
+                    <button class="btn btn-warning" onclick="location.reload()">RETRY</button>
+                </h2>
+                        
+            </div>
+        </div>
+        <script src="script.js"></script>
+    </body>
+</html>

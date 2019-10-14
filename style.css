@@ -1,0 +1,40 @@
+#app{
+    text-align: center;
+}
+
+#map{
+
+    margin: 20px;
+    justify-content: center;  /* 中央寄せ */
+
+    --grid-size: 10; /* 10 x 10 マス（CSS変数） */
+
+    display: grid;
+    grid-template-columns: repeat(var(--grid-size), 30px); /* 10列　幅30px */
+    grid-template-rows: repeat(var(--grid-size), 30px); /* 10列　高さ30px */
+}
+
+.title{
+    margin: 10px;
+}
+
+/* セルの色 */
+.cell{
+    border: 1px solid white;
+    background: whitesmoke;
+}
+
+/* ヘビの頭の色 */
+.cell.head{
+    background: dimgray;
+}
+
+/* ヘビの身体の色 */
+.cell.body{
+    background: darkgray;
+}
+
+/* フルーツの色 */
+.cell.fruit{
+    background: orangered;
+}
