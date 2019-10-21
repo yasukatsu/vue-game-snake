@@ -43,7 +43,6 @@ new  Vue({
             this.grow_up_snake()
             this.randomize_fruit_index()
             this.level_up()
-            console.log(this.snake.speed)
         },
 
     },
