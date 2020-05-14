@@ -23,7 +23,6 @@ new  Vue({
 
     // 初期化
     created() {
-
         // フルーツの位置をランダムに移動
         this.randomize_fruit_index()
 
@@ -31,7 +30,6 @@ new  Vue({
         document.onkeydown = () => {
             this.on_keydown(event.keyCode)
         }
-
     },
 
     watch: {
