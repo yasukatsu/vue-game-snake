@@ -14,9 +14,12 @@
             <div id="app" class="mx-auto">
                     
             <h1 class="title">{{title}}</h1>
+            <button class="btn btn-primary"
+                    @click="time_goes"
+                    >{{onStatus}}
+            </button>
+            <h2>SCORE: {{ snake.body_indexes.length }}</h2>
 
-            <h2>SCORE: {{ snake.body_indexes.length - 1 }}</h2>
-                    
             <div id="map">
                 <!-- セルを100個生成して、必要に応じてhead, body, furitクラスをつける -->
                 <!-- （注意：Vueは v-for="i in 数値"とした時、iが1から始まる） -->
