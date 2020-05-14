@@ -2,6 +2,7 @@ new  Vue({
     el: '#app',
     data: {
         title: "スネークゲーム",
+        onStatus: "Ready ...",
 
         grid_size: 10, // 10 x 10 マス
         fruit_index: 0, // フルーツの位置インデックス
@@ -14,7 +15,7 @@ new  Vue({
                 y: 3,
             },
             
-            body_indexes: [0],  // 体の位置インデックスたち
+            body_indexes: [],  // 体の位置インデックスたち
             direction: '→',  // 進行方向
             speed: 400,  // 1マス進むのにかかる時間[ms] 
         },
@@ -31,8 +32,6 @@ new  Vue({
             this.on_keydown(event.keyCode)
         }
 
-        // 時間を動かし始める
-        this.time_goes()
     },
 
     watch: {
@@ -82,6 +81,9 @@ new  Vue({
         time_goes(){
             if(this.is_gameover) return
             this.forward_snake()
+
+            // statusを変更
+            this.onStatus = "Go !"
 
             // speedミリ秒後に自分自身を呼び出す
             setTimeout(this.time_goes.bind(this), this.snake.speed)
