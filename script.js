@@ -2,7 +2,7 @@ new  Vue({
     el: '#app',
     data: {
         title: "スネークゲーム",
-        onStatus: "Ready ...",
+        condition: "Ready ...",
 
         grid_size: 10, // 10 x 10 マス
         fruit_index: 0, // フルーツの位置インデックス
@@ -81,7 +81,7 @@ new  Vue({
             this.forward_snake()
 
             // statusを変更
-            this.onStatus = "Go !"
+            this.condition = "Go !"
 
             // speedミリ秒後に自分自身を呼び出す
             setTimeout(this.time_goes.bind(this), this.snake.speed)
